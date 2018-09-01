@@ -208,5 +208,4 @@
     left: 60px !important;
     opacity: 1;
   }
-
 </style>
