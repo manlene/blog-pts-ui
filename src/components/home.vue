@@ -230,33 +230,30 @@
     <nav class="navbar-default navbar-side" role="navigation">
       <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
-            <li>
-                <a href="form.html" class=" active-menu waves-effect waves-dark">
-                  <i class="fa fa-sitemap"></i> 系统管理
-                  <span class="fa arrow"></span>
-                </a>
-                <ul class="nav nav-second-level collapse">
-                  <li>
-                    <router-link to="/menu">菜单管理 </router-link>
-                  </li>
-                  <li>
-                    <a href="#">角色管理</a>
-                  </li>
-                  <li>
-                      <router-link to="/user">用户管理</router-link>
-                    </li>
-                </ul>
-              </li>
           <li>
-            <a href="ui-elements.html" class="waves-effect waves-dark">
-              <i class="fa fa-desktop"></i> 文章管理</a>
+            <a href="form.html" class=" active-menu waves-effect waves-dark">
+              <i class="fa fa-sitemap"></i> 系统管理
+              <span class="fa arrow"></span>
+            </a>
+            <ul class="nav nav-second-level collapse">
+              <li>
+                <router-link to="/menu">菜单管理 </router-link>
+              </li>
+              <li>
+                <a href="#">角色管理</a>
+              </li>
+              <li>
+                <router-link to="/user">用户管理</router-link>
+              </li>
+            </ul>
           </li>
+
           <li>
             <a href="chart.html" class="waves-effect waves-dark">
               <i class="fa fa-bar-chart-o"></i> 相册管理</a>
           </li>
 
-         
+
 
 
           <li>
@@ -266,7 +263,10 @@
             </a>
             <ul class="nav nav-second-level collapse">
               <li>
-                <a href="#">标签管理</a>
+                <router-link to="/publishArticle">添加文章</router-link>
+              </li>
+              <li>
+                  <router-link to="/tag">标签管理</router-link>
               </li>
               <li>
                 <a href="#">分类管理</a>
@@ -295,9 +295,9 @@
 
     <div id="page-wrapper">
       <div class="header">
-        <h1 class="page-header">
-          Dashboard
-        </h1>
+        <h4 class="page-header">
+        
+        </h4>
         <ol class="breadcrumb">
           <li>
             <a href="#">Home</a>
@@ -322,7 +322,7 @@
     <!-- /. PAGE INNER  -->
   </div>
 
-  
+
 </template>
 
 <script>
@@ -335,8 +335,8 @@
     },
     methods: {
       loadLoginName() {
-        this.loginName=localStorage.getItem("loginName");
-        console.log("loginName:"+ this.loginName);
+        this.loginName = localStorage.getItem("loginName");
+        console.log("loginName:" + this.loginName);
       }
     },
     mounted() {

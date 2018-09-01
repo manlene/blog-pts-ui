@@ -25,8 +25,8 @@
     name: 'login',
     data() {
       return {
-        email: "",
-        password: "",
+        email: "dzq@qq.com",
+        password: "123456",
         loginErrorDiv: "",
 
       }
