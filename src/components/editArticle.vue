@@ -1,7 +1,7 @@
 <template>
 
   <div id="main">
-    <div>标题：<input v-model="articleTitle" style="width: 95%"></div>
+    <div>标题：<input v-model="articleTitle"></div>
     <mavon-editor v-model="articleContent" />
     <div class="all-tag">
 
@@ -13,27 +13,53 @@
       <div>添加标签：<input style="width: 80%" v-model="tagName" @keyup.enter="saveTag()"> <button type="button" class="btn btn-primary"
           v-on:click.stop.prevent="saveTag()">添加</button></div>
     </div>
-    <button type="button" class="btn btn-primary" v-on:click.stop.prevent="saveArticle()">保存</button>
-    <button type="button" class="btn btn-primary" v-on:click.stop.prevent="saveArticle('1')">保存并发布</button>
-
+    <button type="button" class="btn btn-primary" v-on:click.stop.prevent="updateArticle()">保存</button>
+    <button type="button" class="btn btn-success" v-on:click.stop.prevent="updateArticle('1')">保存并发布</button>
   </div>
 </template>
 
 <script>
   import Vue from 'vue'
   export default {
-    name: 'publishArticle',
+    name: 'editArticle',
     data() {
       return {
         tags: [],
         articleContent: "",
         tagName: "",
         tagIds: [],
-        articleTitle: ""
+        articleTitle: "",
+        articleId: ""
       }
     },
     methods: {
-
+      showArticle() {
+        this.articleId = this.$route.query.articleId
+        var url = "/api/article/" + this.articleId;
+        this.$http.get(url).then(response => {
+          var responseData = response.data;
+          if (responseData.statusCode == '1000208') {
+            var article = responseData.data
+            this.articleContent = article.articleContent;
+            this.articleTitle = article.articleTitle;
+            this.articleTime = article.articleTime;
+            //文章标签
+            article.tags.forEach(tag => {
+              this.tagIds.push(tag.id);
+            });
+            this.tags.forEach(tag => {
+              //已选标签
+              if (this.tagIds.indexOf(tag.id) != -1) {
+                Vue.set(tag, 'active', true);
+              } else {
+                Vue.set(tag, 'active', false);
+              }
+            });
+          }
+        }, response => {
+          console.log("error");
+        });
+      },
       getAllTags() {
         var usersUrl = "/api/tag/active";
         this.$http.get(usersUrl).then(response => {
@@ -73,18 +99,19 @@
         });
 
       },
-      saveArticle(status) {
-        var url = "/api/article/save";
+      updateArticle(status) {
+        var url = "/api/article/update";
         var params = {
+          "id":this.articleId,
           "articleTitle": this.articleTitle,
           "articleContent": this.articleContent,
           "tagIds": this.tagIds,
           "status":status
         };
         console.log(params)
-        this.$http.post(url, params).then(response => {
+        this.$http.patch(url, params).then(response => {
           var responseData = response.data;
-          if (responseData.statusCode = "1000207") {
+          if (responseData.statusCode = "1000209") {
             alert("文章保存成功")
           }
 
@@ -96,6 +123,9 @@
     },
     mounted() {
       this.getAllTags();
+      this.showArticle();
+
+
     }
 
   }

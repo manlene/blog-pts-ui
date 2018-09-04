@@ -81,8 +81,8 @@
                     <span class="pull-right text-muted">60% Complete</span>
                   </p>
                   <div class="progress progress-striped active">
-                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                      style="width: 60%">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                      aria-valuemax="100" style="width: 60%">
                       <span class="sr-only">60% Complete (success)</span>
                     </div>
                   </div>
@@ -98,7 +98,8 @@
                     <span class="pull-right text-muted">28% Complete</span>
                   </p>
                   <div class="progress progress-striped active">
-                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100" style="width: 28%">
+                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="28" aria-valuemin="0"
+                      aria-valuemax="100" style="width: 28%">
                       <span class="sr-only">28% Complete</span>
                     </div>
                   </div>
@@ -114,8 +115,8 @@
                     <span class="pull-right text-muted">60% Complete</span>
                   </p>
                   <div class="progress progress-striped active">
-                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                      style="width: 60%">
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                      aria-valuemax="100" style="width: 60%">
                       <span class="sr-only">60% Complete (warning)</span>
                     </div>
                   </div>
@@ -131,8 +132,8 @@
                     <span class="pull-right text-muted">85% Complete</span>
                   </p>
                   <div class="progress progress-striped active">
-                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-                      style="width: 85%">
+                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="85" aria-valuemin="0"
+                      aria-valuemax="100" style="width: 85%">
                       <span class="sr-only">85% Complete (danger)</span>
                     </div>
                   </div>
@@ -222,40 +223,18 @@
       </ul>
     </nav>
     <!-- Dropdown Structure -->
-
-
-
-
     <!--/. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">
       <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
           <li>
-            <a href="form.html" class=" active-menu waves-effect waves-dark">
-              <i class="fa fa-sitemap"></i> 系统管理
-              <span class="fa arrow"></span>
-            </a>
-            <ul class="nav nav-second-level collapse">
-              <li>
-                <router-link to="/menu">菜单管理 </router-link>
-              </li>
-              <li>
-                <a href="#">角色管理</a>
-              </li>
-              <li>
-                <router-link to="/user">用户管理</router-link>
-              </li>
-            </ul>
+            <router-link to="/user"><i class="fa fa-sitemap"></i> 用户管理</router-link>
           </li>
 
           <li>
             <a href="chart.html" class="waves-effect waves-dark">
               <i class="fa fa-bar-chart-o"></i> 相册管理</a>
           </li>
-
-
-
-
           <li>
             <a href="#" class="waves-effect waves-dark">
               <i class="fa fa-edit"></i>文章管理
@@ -263,29 +242,17 @@
             </a>
             <ul class="nav nav-second-level collapse">
               <li>
+                <router-link to="/articleList">文章列表</router-link>
+              </li>
+              <li>
                 <router-link to="/publishArticle">添加文章</router-link>
-              </li>
-              <li>
-                  <router-link to="/tag">标签管理</router-link>
-              </li>
-              <li>
-                <a href="#">分类管理</a>
               </li>
             </ul>
           </li>
           <li>
-            <a href="empty.html" class="waves-effect waves-dark">
-              <i class="fa fa-fw fa-file"></i> Empty Page</a>
-          </li>
-          <li>
-            <a href="tab-panel.html" class="waves-effect waves-dark">
-              <i class="fa fa-qrcode"></i> Tabs &amp; Panels</a>
+            <router-link to="/tag"> <i class="fa fa-fw fa-file"></i>标签管理</router-link>
           </li>
 
-          <li>
-            <a href="table.html" class="waves-effect waves-dark">
-              <i class="fa fa-table"></i> Responsive Tables</a>
-          </li>
         </ul>
 
       </div>
@@ -296,16 +263,16 @@
     <div id="page-wrapper">
       <div class="header">
         <h4 class="page-header">
-        
+
         </h4>
         <ol class="breadcrumb">
           <li>
-            <a href="#">Home</a>
+            <a href="#">首页</a>
           </li>
           <li>
-            <a href="#">Dashboard</a>
+            <a href="#">文章管理</a>
           </li>
-          <li class="active">Data</li>
+          <li class="active"></li>
         </ol>
 
       </div>
@@ -314,12 +281,12 @@
       </div>
 
       <footer>
-        <p>
-          manlene
+        <p style="text-align: center">
+            ©2018 manlene
         </p>
       </footer>
     </div>
-    <!-- /. PAGE INNER  -->
+    
   </div>
 
 
@@ -330,7 +297,8 @@
     name: 'home',
     data() {
       return {
-        loginName: '',
+        loginName: ''
+        
       }
     },
     methods: {

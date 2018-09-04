@@ -112,7 +112,6 @@
     },
     methods: {
       save() {
-
         var url = "/api/tag/save";
         var params = {
           "tagName": this.tagName,

@@ -4,11 +4,11 @@ import mavonEditor from 'mavon-editor'
 import login from '@/components/login'
 import home from '@/components/home'
 import user from '@/components/user'
-import menu from '@/components/menu'
 import publishArticle from '@/components/publishArticle'
 import articleList from '@/components/articleList'
 import tag from '@/components/tag'
-
+import articleDetail from '@/components/articleDetail'
+import editArticle from '@/components/editArticle'
 Vue.use(mavonEditor)
 Vue.use(Router)
 
@@ -38,23 +38,6 @@ export default new Router({
                   component: user,
                   meta: {
                       title:"user"
-                  }
-          }
-        ]
-    },
-    {
-      path: '/menu',
-        meta: {
-            title: 'blog'
-        },
-        component: home,
-        children: [
-          {
-            path: '',
-                  name: 'menu',
-                  component: menu,
-                  meta: {
-                      title:"menu"
                   }
           }
         ]
@@ -94,6 +77,23 @@ export default new Router({
         ]
     },
     {
+      path: '/articleDetail',
+        meta: {
+            title: '文章内容'
+        },
+        component: home,
+        children: [
+          {
+            path: '',
+                  name: 'articleDetail',
+                  component: articleDetail,
+                  meta: {
+                      title:"articleDetail"
+                  }
+          }
+        ]
+    },
+    {
       path: '/tag',
         meta: {
             title: '标签管理'
@@ -106,6 +106,23 @@ export default new Router({
                   component: tag,
                   meta: {
                       title:"tag"
+                  }
+          }
+        ]
+    },
+    {
+      path: '/editArticle',
+        meta: {
+            title: '文章编辑'
+        },
+        component: home,
+        children: [
+          {
+            path: '',
+                  name: 'editArticle',
+                  component: editArticle,
+                  meta: {
+                      title:"editArticle"
                   }
           }
         ]
