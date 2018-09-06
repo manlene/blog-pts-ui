@@ -34,11 +34,12 @@
     methods: {
       login() {
         var url = "/api/login";
-        var params={
+        var params={  
            "username":this.username,
            "password":this.password
         }
-        this.$http.post(url,params, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).then(response => {
+        var qs = require('qs');
+        this.$http.post(url,qs.stringify(params), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).then(response => {
           var responseData = response.data;
           //登录成功
           if (responseData.statusCode == '1000200') {
