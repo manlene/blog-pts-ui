@@ -40,17 +40,12 @@
         }
         var qs = require('qs');
         this.$http.post(url,qs.stringify(params), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).then(response => {
-          var responseData = response.data;
           //登录成功
-          if (responseData.statusCode == '1000200') {
-            // this.$router.push({path:'/home'});
-            window.location.href = '/home';
-            localStorage.setItem("loginName",responseData.data.loginName);
-          } else {
-            this.loginErrorDiv = responseData.message;
-          }
+            window.location.href = '/';
+            localStorage.setItem("loginName",response.loginName);
+        
         }, response => {
-          console.log("error");
+          this.loginErrorDiv = response.message;
         });
       }
     }

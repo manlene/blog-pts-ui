@@ -17,14 +17,14 @@ new Vue({
 
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
-   alert("尚未登录")
-  if(response.data.status=="403"){
-    
-     this.$router.push({path:'/login'});
-  }
+  console.log("1211",response);
   // Do something with response data
   return response;
 }, function (error) {
-  // Do something with response error
+  console.log("111",error);
+  if(error.response.status==401){
+    window.location.href="/login"
+    // this.$router.push({path:'/login'});
+  }
   return Promise.reject(error);
 });
