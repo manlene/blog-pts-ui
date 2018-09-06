@@ -4,7 +4,7 @@
     <form class="form-signin">
       <h2 class="form-signin-heading">Please sign in</h2>
       <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" class="form-control" v-model="email" placeholder="Email address" required autofocus>
+      <input type="username" class="form-control" v-model="username" placeholder="username" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" class="form-control" v-model="password" placeholder="Password" required>
       <div v-text="loginErrorDiv" style="color: red"></div>
@@ -25,7 +25,7 @@
     name: 'login',
     data() {
       return {
-        email: "dzq@qq.com",
+        username: "dzq@qq.com",
         password: "123456",
         loginErrorDiv: "",
 
@@ -33,8 +33,12 @@
     },
     methods: {
       login() {
-        var url = "/api/user/login?email=" + this.email + "&password=" + this.password;
-        this.$http.get(url).then(response => {
+        var url = "/api/login";
+        var params={
+           "username":this.username,
+           "password":this.password
+        }
+        this.$http.post(url,params, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).then(response => {
           var responseData = response.data;
           //登录成功
           if (responseData.statusCode == '1000200') {

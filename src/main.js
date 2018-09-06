@@ -14,3 +14,17 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+// Add a response interceptor
+axios.interceptors.response.use(function (response) {
+   alert("尚未登录")
+  if(response.data.status=="403"){
+    
+     this.$router.push({path:'/login'});
+  }
+  // Do something with response data
+  return response;
+}, function (error) {
+  // Do something with response error
+  return Promise.reject(error);
+});
