@@ -175,11 +175,14 @@
 
       },
       loadUser() {
+           alert(1)
         var usersUrl = "/api/user"
         this.$http.get(usersUrl).then(response => {
+          alert(2)
           var responseData = response.data;
           this.users = responseData.data;
         }, response => {
+           alert(3)
           console.log("error");
         });
       },
@@ -229,6 +232,7 @@
       }
     },
     mounted() {
+      
       this.loadUser();
     }
 
