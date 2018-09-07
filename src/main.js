@@ -17,13 +17,11 @@ new Vue({
 
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
-  console.log("1211",response);
   // Do something with response data
   return response;
 }, function (error) {
   if(error.response.status==401){
     window.location.href="/login"
-    // this.$router.push({path:'/login'});
   }
   return Promise.reject(error);
 });
