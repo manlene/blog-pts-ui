@@ -9,6 +9,7 @@ import articleList from '@/components/articleList'
 import tag from '@/components/tag'
 import articleDetail from '@/components/articleDetail'
 import editArticle from '@/components/editArticle'
+import album from '@/components/album'
 Vue.use(mavonEditor)
 Vue.use(Router)
 
@@ -123,6 +124,23 @@ export default new Router({
                   component: editArticle,
                   meta: {
                       title:"editArticle"
+                  }
+          }
+        ]
+    },
+    {
+      path: '/album',
+        meta: {
+            title: '相册'
+        },
+        component: home,
+        children: [
+          {
+            path: '',
+                  name: 'album',
+                  component: album,
+                  meta: {
+                      title:"album"
                   }
           }
         ]

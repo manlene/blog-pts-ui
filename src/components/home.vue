@@ -232,8 +232,8 @@
           </li>
 
           <li>
-            <a href="chart.html" class="waves-effect waves-dark">
-              <i class="fa fa-bar-chart-o"></i> 相册管理</a>
+         
+              <router-link to="/album"> <i class="fa fa-bar-chart-o"></i>相册管理</router-link>
           </li>
           <li>
             <a href="#" class="waves-effect waves-dark">

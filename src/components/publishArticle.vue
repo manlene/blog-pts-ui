@@ -2,7 +2,7 @@
 
   <div id="main">
     <div>标题：<input v-model="articleTitle" style="width: 95%"></div>
-    <mavon-editor v-model="articleContent" />
+    <mavon-editor v-model="articleContent" ref=md @imgAdd="$imgAdd" @imgDel="$imgDel"/>
     <div class="all-tag">
 
       <div class="plus-tag tagbtn clearfix" id="myTags">
@@ -29,7 +29,7 @@
         articleContent: "",
         tagName: "",
         tagIds: [],
-        articleTitle: ""
+        articleTitle: "",
       }
     },
     methods: {
@@ -92,9 +92,38 @@
           console.log("error");
         });
 
-      }
+      },
+      // 图片上传，绑定@imgAdd event
+      $imgAdd(pos, $file){
+            // 第一步.将图片上传到服务器.
+           var formdata = new FormData(),_this=this;
+           formdata.append('image', $file);
+           console.log(formdata)
+           this.$http({
+               url: '/api/article/uploadImage',
+               method: 'post',
+               data: formdata,
+               headers: { 'Content-Type': 'multipart/form-data' },
+           }).then((response) => {
+             console.log(response.data);
+              // 第二步.将返回的url替换到文本原位置![...](./0) -> ![...](url)
+               /**
+               * $vm 指为mavonEditor实例，可以通过如下两种方式获取
+               * 1. 通过引入对象获取: `import {mavonEditor} from ...` 等方式引入后，`$vm`为`mavonEditor`
+               * 2. 通过$refs获取: html声明ref : `<mavon-editor ref=md ></mavon-editor>，`$vm`为 `this.$refs.md`
+               */
+             if(response.data.statusCode=='1000213'){
+             
+              _this.$refs.md.$img2Url(pos, response.data.data);
+             }
+           })
+        },
+        $imgDel(pos){
+          // this.$refs.md.$imgDel(pos);
+        }
     },
     mounted() {
+     
       this.getAllTags();
     }
 
